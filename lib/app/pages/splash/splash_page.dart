@@ -1,4 +1,3 @@
-import 'package:dw9_delivery_app/app/core/config/env/env.dart';
 import 'package:dw9_delivery_app/app/core/ui/helpers/size_extensions.dart';
 import 'package:dw9_delivery_app/app/core/ui/widgets/delivery_button.dart';
 import 'package:flutter/material.dart';
@@ -9,38 +8,43 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Splash'),
-      ),
-      body: Column(
-        children: [
-          Container(),
-          DeliveryButton(
-            width: 200,
-            height: 200,
-            label: Env.i['backend_base_url'] ?? '',
-            onPressed: () {},
-          ),
-          Text(MediaQuery.of(context).size.width.toString()),
-          Text(context.screenWidth.toString()),
-          Row(
-            children: [
-              Container(
-                color: Colors.red,
-                width: context.percentWith(.6),
-                height: 200,
+      body: ColoredBox(
+        color: Color(0XFF140E0E),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: context.screenWidth,
+                child: Image.asset(
+                  'assets/images/lanche.png',
+                  fit: BoxFit.cover,
+                ),
               ),
-              Container(
-                color: Colors.blue,
-                width: context.percentWith(.4),
-                height: 200,
+            ),
+            Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: context.percentHeight(.30),
+                  ),
+                  Image.asset('assets/images/logo.png'),
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  DeliveryButton(
+                    width: context.percentWidth(.6),
+                    height: 35,
+                    label: 'ACESSAR',
+                    onPressed: () {
+                      Navigator.of(context).popAndPushNamed('/home');
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'text'),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
